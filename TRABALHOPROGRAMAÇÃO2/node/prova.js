@@ -2,6 +2,7 @@ const sequelize = require("sequelize");
 const banco = require("./banco")
 
 
+
 var prova = banco.conexao.define(
     "prova",
     {
