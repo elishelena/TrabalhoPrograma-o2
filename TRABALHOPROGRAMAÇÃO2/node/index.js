@@ -26,21 +26,21 @@ app.get("/aluno/", async  function(req, res) {
     res.send(resultado);
 })
 
-app.get("/aluno/:id",async function(req, res) {
-    const resultado = await aluno.aluno.findByPk(req.params.id)
-    if( resultado == null ){
-        res.status(404).send({})
-    }else{
-        res.send(resultado);
-    }
+// app.get("/aluno/:id",async function(req, res) {
+//     const resultado = await aluno.aluno.findByPk(req.params.id)
+//     if( resultado == null ){
+//         res.status(404).send({})
+//     }else{
+//         res.send(resultado);
+//     }
     
-})
+// })
 
 app.get("/aluno/:id",async function(req, res) {
     const alunoSelecionado = await aluno.aluno.findByPk(req.params.id, 
         { include: { model: prova.prova } } 
     )
-    if( professorSelecionado == null ){
+    if( alunoSelecionado == null ){
         res.status(404).send({})
     }else{
         res.send(alunoSelecionado);
@@ -49,6 +49,7 @@ app.get("/aluno/:id",async function(req, res) {
 
 app.get("/aluno/nome/:nome",async function(req, res) {
     const resultado = await aluno.aluno.findAll({
+        include: { model: prova.prova },
         where:{ nome:req.params.nome }
     })
     if( resultado == null ){
@@ -115,13 +116,26 @@ app.get("/prova/:id",async function(req, res) {
     } 
 })
 
+app.get("/prova/materia/:materia",async function(req, res) {
+    const resultado = await prova.prova.findAll({
+        include: { model: aluno.aluno },
+        where:{ materia:req.params.materia }
+    })
+    if( resultado == null ){
+        res.status(404).send({})
+    }else{
+        res.send(resultado);
+    }
+})
+
 
 
 app.post("/prova/",async function(req,res){
     const resultado = await prova.prova.create({
         anoProva:req.body.anoProva,
         materia:req.body.materia,
-        link:req.body.link
+        link:req.body.link,
+        alunoId:req.body.alunoId,
     })
     res.send(resultado)
 })
