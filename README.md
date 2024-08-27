@@ -1,4 +1,4 @@
-# Exemplo de documentação de API
+# Documentação de API
 
 
 
@@ -8,12 +8,14 @@ Para criar um aluno: usar (JSON)
       http://localhost:3000/aluno
 
       O corpo da requisição deve ser a seguinte:
+          {
+        "nome":"albo",
+        "email":"albo1@gmail.com",
+        "senha": "albo123"
+    }
 
-   {
-	"nome":"albo",
-	"email":"albo1@gmail.com",
-	"senha":"albo123"
-  }
+  
+  
   
 
   ## POST (PROVA)
@@ -23,12 +25,12 @@ Para criar um prova: usar (JSON)
 
       O corpo da requisição deve ser a seguinte:
 
- {
+ 	   {
 	"anoProva":"2022",
 	"materia":"matematica",
 	"link":"prova.com",
 	"alunoId":1
-}  
+     }  
 
 
 
@@ -76,11 +78,11 @@ Para realizar o PUT de aluno (O número "1" você troca de acordo com o id do al
 
 O corpo da requisição deve ser a seguinte: "troquei o nome do aluno com o id 1, de albo para gilso"
 
-    {
+             {
 	  "nome":"gilso",
 	  "email":"albo1@gmail.com",
-  	"senha":"albo123"
-    }
+	  "senha":"albo123"
+        }
 
 
 
@@ -92,24 +94,24 @@ Para realizar o PUT de prova (O número "1" você troca de acordo com o id da pr
 
 O corpo da requisição deve ser a seguinte: "troquei a materia da prova referente ao id 1, de matematica para geografia"
 
-  {
+           {
 	"anoProva":"2022",
 	"materia":"geografia",
 	"link":"prova.com",
 	"alunoId":1
-  } 
+     } 
 
 
   ## DELETE (aluno)
 Para realizar o delete (troco o numero 1 pelo id do aluno que desejo deletar)
  
-  http://localhost:3000/aluno/1
+	  http://localhost:3000/aluno/1
 
 
   ## DELETE (prova)
 Para realizar o delete (troco o numero 1 pelo id da prova que desejo deletar)
  
-  http://localhost:3000/prova/1
+ 	 http://localhost:3000/prova/1
 
 
 
